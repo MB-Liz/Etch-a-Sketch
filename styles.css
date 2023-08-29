@@ -1,0 +1,18 @@
+
+/* Grid Layout*/
+
+.sketchpad-grid{
+    display:grid;
+    width: 675px;
+    height: 675px;
+    border: 5px solid;
+    grid-gap: 1px;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    background: #000;
+}
+
+.sketchpad-grid > div{
+    background: #fff;
+    color: #f20000;
+}
