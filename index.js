@@ -1,4 +1,5 @@
 const sketchpad = document.querySelector(".sketchpad-grid");
+const cell = document.querySelectorAll(".cell");
 //const context = sketchpad.getContext("2d");
 
 function buildGrid(numGrid, sketchpad){
@@ -7,10 +8,19 @@ function buildGrid(numGrid, sketchpad){
     for (let x = 1; x <= numGrid; x++){
         for(let y = 1; y <= numGrid; y++){
             let cell = document.createElement("div");
-            cell.innerText = x;
-            sketchpad.appendChild(cell).className = "grid-item";
+            
+            sketchpad.appendChild(cell).className = "cell";
         }
     }
 }
 
-buildGrid(8, sketchpad);
+function colorCell(cell){
+    document.getElementsByClassName('cell')[cell].style.background = '#000'; 
+    console.log("success");
+}
+
+buildGrid(15, sketchpad);
+
+cell.forEach(function (i){
+    i.addEventListener('mouseover', (event) => colorCell(i))
+});
