@@ -1,18 +1,41 @@
+.content{
+    display: flex;
+    padding: 2% 12% 0% 12%;
+}
+
+.grid-size-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 2rem 0.5rem 2rem;
+    
+}
+
+.grid-size-button{
+    border: 3px solid;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 1rem;
+    border-radius: 50%;
+}
 
 /* Grid Layout*/
 
 .sketchpad-grid{
     display:grid;
-    width: 675px;
-    height: 675px;
-    border: 3px solid;
+    width: 680px;
+    height: 680px;
+    border: 5px solid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
     background: #000;
 }
 
 .sketchpad-grid > div{
-    background: #fff;
     color: #000000;
-    border: 0.5px solid;
+}
+
+
+
+.right-container{
+    padding: 5rem;
 }
