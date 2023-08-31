@@ -39,3 +39,35 @@
 .right-container{
     padding: 5rem;
 }
+
+.pen-button{
+    border: 3px solid;
+    border-radius: 5%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 1rem;
+    margin: 3rem 1rem;
+    width: 10rem;
+}
+
+.erase-button{
+    border: 3px solid;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 1rem;
+    margin: 5rem 1rem;
+    width: 10rem;
+}
+
+
+.grid-size-button:hover{
+    font-size: 1.65rem;
+}
+
+.pen-button:hover, .grid-size-button:hover, .erase-button:hover{
+    transform: scale(1.10);
+    background: #000;
+    color: aliceblue;
+}
