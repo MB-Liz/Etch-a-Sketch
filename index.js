@@ -4,8 +4,8 @@ const gridSizeButton = document.querySelectorAll(".grid-size-button");
 const eraseButton = document.querySelector(".erase-button");
 const rainbowButton =document.querySelector(".rainbow-button");
 const tintButton =document.querySelector(".tint-button");
-const black = "#000";
-const white = "#fff";
+const black = "#000000";
+const white = "#ffffff";
 let defaultGridSize = 25;
 let gridSize = defaultGridSize;
 let currentColor = black;
@@ -38,6 +38,19 @@ function DestroyGrid(){
 }
 
 function colorCell(cell){
+    let cellColor = rgbToHex(cell.style.backgroundColor);
+    cellColor = cellColor.toString();
+    console.log(cellColor);
+    console.log(white);
+    if (cellColor === white){
+        console.log("white");
+     }
+     else if(cellColor == black){
+        console.log("red");
+     }
+     else{
+        console.log(cell.style.backgroundColor);
+     }
     switch (pen){
         case 'rainbow':
             let vintageColors = ["#A9EEC2", "#FAD284", "#F38181", "#705772",
@@ -57,9 +70,6 @@ function colorCell(cell){
                  else if(cell.style.backgroundColor == tintColors[tintColors.length]){
                     currentColor = tintColors[tintColors.length];
                  }
-                 else{
-                    currentColor = tintColors[0];
-                 }
             } 
             cell.style.backgroundColor = currentColor;
             break;
@@ -74,6 +84,23 @@ function colorCell(cell){
 
     }
 }
+
+console.log(componentToHex(255));
+// Turn rgb values to hex values
+
+function componentToHex(c){
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(rgb){
+    let rgbValues = rgb.substring(4, rgb.length-1);
+    rgbValues = rgbValues.trim();
+    const rgbArray = rgbValues.split(",");
+    let r = rgbArray[0], g = rgbArray[1], b = rgbArray[2];
+    return "#" + componentToHex(Number(r)) + componentToHex(Number(g)) + componentToHex(Number(b));
+}
+
 // Select grid size
 gridSizeButton.forEach((size) => {
     size.addEventListener("click", (e) =>{
