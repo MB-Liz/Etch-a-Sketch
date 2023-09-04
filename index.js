@@ -5,7 +5,7 @@ const eraseButton = document.querySelector(".erase-button");
 const rainbowButton =document.querySelector(".rainbow-button");
 const tintButton =document.querySelector(".tint-button");
 const black = "#000000";
-const white = "#ffffff";
+const white = "#FFFFFF";
 let defaultGridSize = 25;
 let gridSize = defaultGridSize;
 let currentColor = black;
@@ -38,19 +38,10 @@ function DestroyGrid(){
 }
 
 function colorCell(cell){
+    let cellOpacity = 0.9;
     let cellColor = rgbToHex(cell.style.backgroundColor);
     cellColor = cellColor.toString();
-    console.log(cellColor);
-    console.log(white);
-    if (cellColor === white){
-        console.log("white");
-     }
-     else if(cellColor == black){
-        console.log("red");
-     }
-     else{
-        console.log(cell.style.backgroundColor);
-     }
+    cellColor = cellColor.toUpperCase();
     switch (pen){
         case 'rainbow':
             let vintageColors = ["#A9EEC2", "#FAD284", "#F38181", "#705772",
@@ -60,18 +51,14 @@ function colorCell(cell){
             cell.style.backgroundColor = currentColor;
             break;
         case 'tint':
-            let tintColors = ["#E6E6E6",  "#C9C9C9", "#AEAEAE", "#939393",
-                             "#7A7A7A", "#616161", "#494949", "#333333",
-                             "#1E1E1E", "#040404"];
-            for(let i = 0; i < tintColors.length; i++){
-                 if (cell.style.backgroundColor == tintColors[i]){
-                    currentColor = tintColors[i+1];
-                 }
-                 else if(cell.style.backgroundColor == tintColors[tintColors.length]){
-                    currentColor = tintColors[tintColors.length];
-                 }
-            } 
-            cell.style.backgroundColor = currentColor;
+             if(cell.style.opacity == 0.1){
+                currentColor = black;
+                cell.style.backgroundColor = currentColor;
+            }else if (cell.style.opacity == 0 && cellColor != black){
+                cell.style.opacity = cellOpacity;
+            }else{
+                cell.style.opacity = cell.style.opacity - 0.1;
+            }
             break;
         case 'black':
             currentColor = black;
@@ -125,3 +112,23 @@ function tintGrid(){
     pen = 'tint';
 }
 buildGrid(gridSize);
+/*
+
+let tintColors = ["#E6E6E6",  "#C9C9C9", "#AEAEAE", "#939393",
+                             "#7A7A7A", "#616161", "#494949", "#333333",
+                             "#1E1E1E", "#040404"];
+
+for(let i = 0; i < tintColors.length; i++){
+                 if (cellColor == tintColors[i]){
+                    currentColor = tintColors[i+1];
+                    cell.style.backgroundColor = currentColor;
+                 }
+                 else if(cellColor == tintColors[tintColors.length]){
+                    currentColor = tintColors[tintColors.length];
+                    cell.style.backgroundColor = currentColor;
+                 }
+                 else{
+                    currentColor = tintColors[0];
+                    cell.style.backgroundColor = currentColor;
+                 }
+            }*/
