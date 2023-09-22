@@ -1,73 +1,133 @@
+body{
+    margin: 0;
+    color: #F2EFEB;
+    background: #3D403A;
+    min-width: fit-content;
+}
+
+.page-container{
+    display: flex;
+    flex-direction: column;
+    
+}
+.header{
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'Goudy Bookletter 1911', sans-serif;
+    padding: 1rem;
+}
+
 .content{
     display: flex;
-    padding: 2% 12% 0% 12%;
+    padding: 2% 5% 1%;
+    width: fit-content;
+    align-self: center;
 }
 
 .grid-size-container{
     display: flex;
-    justify-content: space-around;
-    padding: 2rem 2rem 0.5rem 2rem;
+    flex-direction: column;
+    justify-content: space-evenly; 
+    padding: 1rem 2rem;
     
 }
 
 .grid-size-button{
-    border: 3px solid;
-    font-size: 1.5rem;
-    font-weight: 800;
-    padding: 1rem;
+    background: #888C81;
+    border: 3px solid #0D0D0D;
     border-radius: 50%;
+    font-size: 2.2rem;
+    font-weight: 800;
+    padding: 1.2rem;
 }
 
 /* Grid Layout*/
 
 .sketchpad-grid{
     display:grid;
+    margin: 1rem;
     width: 680px;
     height: 680px;
     border: 5px solid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
-    background: #000;
+    
 }
 
 .sketchpad-grid > div{
-    color: #000000;
+    color: #fff;
 }
 
-
+.left-container{
+    display: flex;
+}
 
 .right-container{
-    padding: 5rem;
+    padding: 1rem 4rem 1rem 5rem;
+    align-self: flex-end;
 }
 
 .pen-button{
-    border: 3px solid;
+    background: #888C81;
+    border: 3px solid #0D0D0D;
     border-radius: 5%;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 800;
     padding: 1rem;
-    margin: 3rem 1rem;
+    margin: 2rem 1rem;
     width: 10rem;
+    align-items: center;
 }
 
+.colorPicker-wrap{
+    display: flex;
+    justify-content: center;
+}
+
+input[type = "color"]{
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 50%;
+    background: none;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: none;
+    height: 40px;
+    width: 40px;
+    display: flex;
+
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
+
+
 .erase-button{
-    border: 3px solid;
+    background: #888C81;
+    border: 3px solid #0D0D0D;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 800;
     padding: 1rem;
-    margin: 5rem 1rem;
+    margin: 6rem 1rem;
     width: 10rem;
 }
 
 
 .grid-size-button:hover{
-    font-size: 1.65rem;
+    color: blanchedalmond;
 }
 
-.pen-button:hover, .grid-size-button:hover, .erase-button:hover{
+.pen-button:hover, .erase-button:hover{
     transform: scale(1.10);
-    background: #000;
-    color: aliceblue;
+    color: rgb(159, 197, 228);
 }

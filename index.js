@@ -2,22 +2,35 @@ const sketchpad = document.querySelector(".sketchpad-grid");
 const cell = document.querySelectorAll(".cell");
 const gridSizeButton = document.querySelectorAll(".grid-size-button");
 const eraseButton = document.querySelector(".erase-button");
+const colorButton =document.querySelector(".color-button");
 const rainbowButton =document.querySelector(".rainbow-button");
 const tintButton =document.querySelector(".tint-button");
-const black = "#000000";
-const white = "#FFFFFF";
+const colorPicker = document.querySelector("#colorPicker");
+const black = "#000";
+const white = "#fff";
 let defaultGridSize = 25;
 let gridSize = defaultGridSize;
 let currentColor = black;
 let pen = 'black';
 
 //add toggle grid border
+// tint stopped working
+// white and black stopped working
+
+
+
 
 eraseButton.addEventListener("click", eraseGrid);
-rainbowButton.addEventListener("click", rainbowGrid);
-tintButton.addEventListener("click", tintGrid);
+rainbowButton.addEventListener("click", () => pen = 'rainbow');
+tintButton.addEventListener("click", () => pen = 'tint');
+colorButton.addEventListener("click", colorEvent);
 
-
+function colorEvent(){
+    pen = 'color';
+    colorPicker.addEventListener('input', () => {
+        currentColor = colorPicker.value;
+     })
+}
 
 
 function buildGrid(gridSize){
@@ -27,6 +40,8 @@ function buildGrid(gridSize){
         for(let y = 1; y <= gridSize; y++){
             let cell = document.createElement("div");
             cell.style.backgroundColor = white;
+            console.log ("cell" + x + y);
+            cell.style.opacity = 1;
             sketchpad.appendChild(cell).className = "cell";
             cell.addEventListener('mouseover',(e) => colorCell(cell));
         }
@@ -38,12 +53,16 @@ function DestroyGrid(){
 }
 
 function colorCell(cell){
-    let cellOpacity = 0.9;
     let cellColor = rgbToHex(cell.style.backgroundColor);
     cellColor = cellColor.toString();
     cellColor = cellColor.toUpperCase();
     switch (pen){
+        case 'color':
+            cell.style.opacity = 1;
+             cell.style.backgroundColor = currentColor;
+            break;
         case 'rainbow':
+            cell.style.opacity = 1;
             let vintageColors = ["#A9EEC2", "#FAD284", "#F38181", "#705772",
                                 "#705772", "#445069", "#252B48", "#CD1818",
                                 "#116D6E", "#FF8551", "#A2CDB0"];
@@ -51,21 +70,32 @@ function colorCell(cell){
             cell.style.backgroundColor = currentColor;
             break;
         case 'tint':
+            console.log(cell.style.opacity + " opacity");
              if(cell.style.opacity == 0.1){
+                console.log("finale");
                 currentColor = black;
+                cell.style.opacity = 0.99;
                 cell.style.backgroundColor = currentColor;
-            }else if (cell.style.opacity == 0 && cellColor != black){
-                cell.style.opacity = cellOpacity;
-            }else{
+            }else if(cell.style.opacity != 0.99){
+                console.log("process");
+                currentColor = white;
+                cell.style.backgroundColor = white;
+                let oldV = cell.style.opacity;
                 cell.style.opacity = cell.style.opacity - 0.1;
+                let newV = cell.style.opacity;
+                console.log(oldV + "process" + newV + white);
             }
             break;
         case 'black':
             currentColor = black;
+            console.log("black");
             cell.style.backgroundColor = currentColor;
             break;
         default:
             currentColor = white;
+            cell.style.backgroundColor = currentColor;
+
+            currentColor = "#000";
             cell.style.backgroundColor = currentColor;
             break;
 
@@ -104,13 +134,6 @@ function eraseGrid(){
     buildGrid(gridSize);
 }
 
-function rainbowGrid(){
-    pen = 'rainbow';
-}
-
-function tintGrid(){
-    pen = 'tint';
-}
 buildGrid(gridSize);
 /*
 
@@ -132,3 +155,6 @@ for(let i = 0; i < tintColors.length; i++){
                     cell.style.backgroundColor = currentColor;
                  }
             }*/
+
+
+// bugs - after tint = black, cell color didnt change
