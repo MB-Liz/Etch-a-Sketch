@@ -52,10 +52,6 @@ body{
     grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
-.sketchpad-grid > div{
-    color: #fff;
-}
-
 .left-container{
     display: flex;
 }
