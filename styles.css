@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    border: 1px;
+    padding: 0;
+    text-align: center;
+}
+
 body{
     margin: 0;
     background: #3D403A;
@@ -20,7 +27,7 @@ body{
 .content{
     display: flex;
     width: fit-content;
-    padding: 2% 5% 1%;
+    padding: 1% 5% 35px;
     align-self: center;
 }
 
@@ -47,7 +54,7 @@ body{
     width: 680px;
     height: 680px;
     margin: 1rem;
-    border: 5px solid;
+    border: 8px solid #50574b39;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
@@ -115,6 +122,18 @@ input[type="color"]::-webkit-color-swatch-wrapper{
     font-weight: 800;
 }
 
+.footer{
+    width: 100%;
+    background: #596e79;
+    color: #F4F1DE;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+}
 
 .grid-size-button:hover{
     color: blanchedalmond;
